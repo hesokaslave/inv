@@ -165,9 +165,22 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!--SCRIPTS-->
     <script src="/min/production.min.js"></script>
     <!--SCRIPTS END-->
+
+    <script type="text/javascript">
+
+        io.socket.on('newOp', function(data){
+            swal(`Nouvelle  ${data.operation} Enregistrée !`, `Produit : ${data.product}    ||   ${data.type} : ${data.actor} !`, "success");
+            swal.close();
+            setTimeout(function () {
+              swal.close();
+            }, 1500);
+          })
+
+        </script>
   </body>
 </html>

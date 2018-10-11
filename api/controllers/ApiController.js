@@ -17,15 +17,13 @@ module.exports = {
 
     manuelLivraison : (req,res) => {
       const { actor, product } = req.allParams()
-      console.log('manuel livraison');
-      console.log({ actor, product });
+      sails.sockets.blast('newOp',{operation : 'Livraison',type : 'Client', actor,product})
       return res.ok({ok : 'ok'});
     },
 
     manuelReception : (req,res) => {
       const { actor, product } = req.allParams()
-      console.log('manuel reception');
-      console.log({ actor, product });
+      sails.sockets.blast('newOp',{operation : 'Réception',type: 'Fournisseur', actor,product})
       return res.ok({ok : 'ok'});
     }
 
