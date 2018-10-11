@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2> Liste des Receptions </h2>
+      <br>
+      <table class="table stripped-table">
+        <thead>
+          <th># recepaison</th>
+          <th>Quantité</th>
+          <th>Fournisseur</th>
+          <th>Produit</th>
+          <th>Date Ajout</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <% _.each(receptions, (recep) => { %>
+          <tr>
+              <td> <%= recep.id %> </td>
+              <td> <%= recep.quantite %> </td>
+              <td> <%= recep.fournisseur.nom %> </td>
+              <td> <%= recep.product.code %> </td>
+              <td> <%= recep.createdAt %> </td>
+              <td>
+                <form action="/reception/delete" method="POST">
+                  <input name="id" type="hidden" value="<%= recep.id %>" />
+                  <input name="four_id" type="hidden" value="<%= recep.fournisseur.id %>" />
+                  <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+              </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

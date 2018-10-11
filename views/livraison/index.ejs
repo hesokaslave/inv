@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2> Liste des Livraisons </h2>
+      <br>
+      <table class="table stripped-table">
+        <thead>
+          <th># Livraison</th>
+          <th>Quantité</th>
+          <th>Client</th>
+          <th>Produit</th>
+          <th>Date Ajout</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <% _.each(livraisons, (livr) => { %>
+          <tr>
+              <td> <%= livr.id %> </td>
+              <td> <%= livr.quantite %> </td>
+              <td> <%= livr.client.nom %> </td>
+              <td> <%= livr.product.code %> </td>
+              <td> <%= livr.createdAt %> </td>
+              <td>
+                <form action="/livraison/delete" method="POST">
+                  <input name="id" type="hidden" value="<%= livr.id %>" />
+                  <input name="client_id" type="hidden" value="<%= livr.client.id %>" />
+                  <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+              </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

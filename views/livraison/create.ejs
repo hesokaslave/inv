@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form class="form-horizontal" action="/livraison" method="POST">
+      <fieldset>
+
+      <!-- Form Name -->
+      <legend>Nouvelle Livraison</legend>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="nom">Quantité</label>
+        <div class="col-md-4">
+        <input id="quantite" name="quantite" type="number" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="ville">Client</label>
+        <div class="col-md-4">
+        <select id="client" name="client_id" class="form-control input-md">
+            <% _.each(clients, (cl) => { %>
+                <option value="<%= cl.id%>"><%= cl.nom %>
+             <% }) %>
+        </select>
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="ville">Produit</label>
+        <div class="col-md-4">
+        <select id="product" name="product_id" class="form-control input-md">
+            <% _.each(products, (pr) => { %>
+                <option value="<%= pr.id%>"><%= pr.nom %>
+             <% }) %>
+        </select>
+        </div>
+      </div>
+
+
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="submit"></label>
+        <div class="col-md-4">
+          <button id="submit" name="submit" class="btn btn-primary">Envoyer</button>
+        </div>
+      </div>
+
+      </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

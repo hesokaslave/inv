@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form class="form-horizontal" action="/client/update" method="POST">
+      <input type="hidden" name="id" value="<%= client.id %>" />
+      <fieldset>
+
+      <!-- Form Name -->
+      <legend>Editer Fournisseur</legend>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="nom">Nom</label>
+        <div class="col-md-4">
+        <input id="nom" name="nom" type="text" value="<%= client.nom %>" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="ville">Ville</label>
+        <div class="col-md-4">
+        <input id="ville" name="ville" type="text" value="<%= client.ville %>" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="submit"></label>
+        <div class="col-md-4">
+          <button id="submit" name="submit" class="btn btn-primary">Envoyer</button>
+        </div>
+      </div>
+
+      </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

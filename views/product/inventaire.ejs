@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2> Liste des Produits </h2>
+      <table class="table stripped-table">
+        <thead>
+          <th>#</th>
+          <th>Nom</th>
+          <th>Code</th>
+          <th>Code à barres</th>
+          <th>Code RFID</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <% _.each(products, (pr) => { %>
+          <tr>
+              <td> <%= pr.id %> </td>
+              <td> <%= pr.nom %> </td>
+              <td> <%= pr.code %> </td>
+              <td> <%= pr.codeABarres %> </td>
+              <td> <%= pr.codeRFID %> </td>
+              <td> <%= pr.stock %> </td>
+              <td>
+                <form action="/product/delete" method="POST">
+                  <input name="id" type="hidden" value="<%= pr.id %>" />
+                  <a class="btn btn-warning" href="/product/<%= pr.id %>/edit">Editer</a>
+                  <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+              </td>
+
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

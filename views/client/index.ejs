@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2> Liste des Clients </h2>
+      <br>
+      <table class="table stripped-table">
+        <thead>
+          <th>#</th>
+          <th>Nom</th>
+          <th>Ville</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <% _.each(clients, (cl) => { %>
+          <tr>
+              <td> <%= cl.id %> </td>
+              <td> <%= cl.nom %> </td>
+              <td> <%= cl.ville %> </td>
+              <td>
+                <form action="/client/delete" method="POST">
+                  <input name="id" type="hidden" value="<%= cl.id %>" />
+                  <a class="btn btn-warning" href="/client/<%= cl.id %>/edit">Editer</a>
+                  <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+              </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form class="form-horizontal" action="/product/update" method="POST">
+        <input name="id" type="hidden" value="<%=product.id%>">
+      <fieldset>
+
+      <!-- Form Name -->
+      <legend>Editer Produit</legend>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="nom">Nom</label>
+        <div class="col-md-4">
+        <input id="nom" name="nom" type="text" value="<%= product.nom%>" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="nom">Code</label>
+        <div class="col-md-4">
+        <input id="code" name="code" type="text" value="<%= product.code%>" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="nom">Code à Barres</label>
+        <div class="col-md-4">
+        <input id="code" name="codeABarres" type="text" value="<%= product.codeABarres%>" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="nom">Code RFID</label>
+        <div class="col-md-4">
+        <input id="code" name="codeRFID" type="text" value="<%= product.codeRFID%>" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="nom">Stock Disponible</label>
+        <div class="col-md-4">
+        <input id="quantite" name="quantite" min="0" type="number" value="<%= product.stock%>" class="form-control input-md" required="">
+
+        </div>
+      </div>
+
+
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="submit"></label>
+        <div class="col-md-4">
+          <button id="submit" name="submit" class="btn btn-primary">Envoyer</button>
+        </div>
+      </div>
+
+      </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
