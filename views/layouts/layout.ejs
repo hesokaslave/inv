@@ -177,7 +177,8 @@
             swal(`Nouvelle  ${data.operation} Enregistrée !`, `Produit : ${data.product}    ||   ${data.type} : ${data.actor} !`, "success");
             swal.close();
             setTimeout(function () {
-              swal.close();
+              if(data.operation === 'Réception') window.location.replace('/reception')
+              else window.location.replace('/livraison')
             }, 1500);
           })
 
