@@ -27,7 +27,7 @@ module.exports.sockets = {
   *                                                                          *
   ***************************************************************************/
 
-  // transports: [ 'websocket' ],
+   transports: [ 'websocket' ],
 
 
   /***************************************************************************
@@ -42,11 +42,11 @@ module.exports.sockets = {
   *                                                                          *
   ***************************************************************************/
 
-  // beforeConnect: function(handshake, proceed) {
+   beforeConnect: function(handshake, proceed) {
   //
   //   // `true` allows the socket to connect.
   //   // (`false` would reject the connection)
-  //   return proceed(undefined, true);
+     return proceed(undefined, true);
   //
   // },
 
