@@ -33,7 +33,7 @@ module.exports.routes = {
   'POST /manuel/livraison' : { action : 'api/manuelLivraison' },
   'POST /manuel/reception' : { action : 'api/manuelReception' },
   'POST /bars/livraison' : { action : 'api/barsLivraison' },
-  'POST /bars/reception' : { action : 'api/barslReception' },
+  'POST /bars/reception' : { action : 'api/barsReception' },
 
   '/inventaire' : { action : 'product/inventaire'},
 
