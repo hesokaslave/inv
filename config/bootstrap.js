@@ -39,12 +39,11 @@ module.exports.bootstrap = async function(done) {
   ]);
   if( await Product.count() === 0 ) await Product.createEach([
     { nom : 'Imprimante HP M102A', code : 'M102A', codeRFID : 'AB3X88', codeABarres : '345411534', stock : 10},
-    { nom : 'PC Portable Dell XPS', code : 'M1530', codeRFID : 'DB4CC85', codeABarres : '3542253454', stock : 30}
-    { nom : 'PC Portable Lenovo', code : 'AB485', codeRFID : 'FDB485', codeABarres : '3545333454', stock : 30}
-    { nom : 'PC Portable ASUS ROG', code : 'KX3384', codeRFID : 'TYDB485', codeABarres : '3545346654', stock : 30}
-    { nom : 'Apple Watch 4', code : 'APPW4', codeRFID : 'LPDB485', codeABarres : '3544453454', stock : 30}
+    { nom : 'PC Portable Dell XPS', code : 'M1530', codeRFID : 'DB4CC85', codeABarres : '3542253454', stock : 30},
+    { nom : 'PC Portable Lenovo', code : 'AB485', codeRFID : 'FDB485', codeABarres : '3545333454', stock : 30},
+    { nom : 'PC Portable ASUS ROG', code : 'KX3384', codeRFID : 'TYDB485', codeABarres : '3545346654', stock : 30},
+    { nom : 'Apple Watch 4', code : 'APPW4', codeRFID : 'LPDB485', codeABarres : '3544453454', stock : 30},
     { nom : 'Samsung Gear 3', code : 'SMG3', codeRFID : 'UTDB485', codeABarres : '3545553454', stock : 30}
-
   ])
   if( await Client.count() === 0 ) await Client.createEach([
     { nom : 'Aramex',ville : 'Casa'},
