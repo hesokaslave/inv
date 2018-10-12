@@ -22,9 +22,12 @@ module.exports = {
       if( prods.length === 0 ) return res.ok({ 'error' : ` Produit Introuvable ! (${product}) `})
       if( clients.length === 0 ) return res.ok({ 'error' : ` Client Introuvable ! (${actor}) `})
 
+      if(prods[0].stock < Number(quantite)) return res.ok({ 'error' : `Stock Insuffisant ! ( Stock : ${prods[0].stock} || Qté : ${quantite})`})
+
       Livraison.create({ quantite, product : prods[0].id, client : clients[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'livraisons').members([liv.id]);
         await Client.addToCollection(clients[0].id, 'livraisons').members([liv.id]);
+        await Product.update(prods[0].id,{stock : (quantite - 1)})
         sails.sockets.blast('newOp',{operation : 'Livraison',type : 'Client', actor,product,quantite})
         return res.ok({ok : 'ok'});
       })
@@ -41,6 +44,7 @@ module.exports = {
       Reception.create({ quantite, product : prods[0].id, fournisseur : fours[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'receptions').members([liv.id]);
         await Fournisseur.addToCollection(fours[0].id, 'receptions').members([liv.id]);
+        await Product.update(prods[0].id,{stock : (quantite + 1)})
         sails.sockets.blast('newOp',{operation : 'Réception',type: 'Fournisseur', actor,product,quantite})
         return res.ok({ok : 'ok'});
       })
@@ -54,9 +58,12 @@ module.exports = {
       if( prods.length === 0 ) return res.ok({ 'error' : ` Produit Introuvable ! (${barCode}) `})
       if( clients.length === 0 ) return res.ok({ 'error' : ` Client Introuvable ! (${actor}) `})
 
+      if(prods[0].stock < Number(quantite)) return res.ok({ 'error' : `Stock Insuffisant ! ( Stock : ${prods[0].stock} || Qté : ${quantite})`})
+
       Livraison.create({ quantite, product : prods[0].id, client : clients[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'livraisons').members([liv.id]);
         await Client.addToCollection(clients[0].id, 'livraisons').members([liv.id]);
+        await Product.update(prods[0].id,{stock : (quantite - 1)})
         sails.sockets.blast('newOp',{operation : 'Livraison',type : 'Client', actor, product : prods[0].code, quantite})
         return res.ok({ok : 'ok'});
       })
@@ -73,6 +80,7 @@ module.exports = {
       Reception.create({ quantite, product : prods[0].id, fournisseur : fours[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'receptions').members([liv.id]);
         await Fournisseur.addToCollection(fours[0].id, 'receptions').members([liv.id]);
+        await Product.update(prods[0].id,{stock : (quantite + 1)})
         sails.sockets.blast('newOp',{operation : 'Réception',type: 'Fournisseur', actor, product : prods[0].code, quantite})
         return res.ok({ok : 'ok'});
       })
