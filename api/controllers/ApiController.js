@@ -27,9 +27,9 @@ module.exports = {
       Livraison.create({ quantite, product : prods[0].id, client : clients[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'livraisons').members([liv.id]);
         await Client.addToCollection(clients[0].id, 'livraisons').members([liv.id]);
-        await Product.update(prods[0].id,{stock : (quantite - 1)})
+        await Product.update(prods[0].id,{stock : (prods[0].stock - Number(quantite))})
         sails.sockets.blast('newOp',{operation : 'Livraison',type : 'Client', actor,product,quantite})
-        return res.ok({ok : 'ok'});
+        return res.ok({'stock' : prods[0].stock - Number(quantite)});
       })
     },
 
@@ -44,9 +44,9 @@ module.exports = {
       Reception.create({ quantite, product : prods[0].id, fournisseur : fours[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'receptions').members([liv.id]);
         await Fournisseur.addToCollection(fours[0].id, 'receptions').members([liv.id]);
-        await Product.update(prods[0].id,{stock : (quantite + 1)})
+        await Product.update(prods[0].id,{stock : (prods[0].stock + Number(quantite))})
         sails.sockets.blast('newOp',{operation : 'Réception',type: 'Fournisseur', actor,product,quantite})
-        return res.ok({ok : 'ok'});
+        return res.ok({'stock' : prods[0].stock + Number(quantite)});
       })
     },
 
@@ -63,9 +63,9 @@ module.exports = {
       Livraison.create({ quantite, product : prods[0].id, client : clients[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'livraisons').members([liv.id]);
         await Client.addToCollection(clients[0].id, 'livraisons').members([liv.id]);
-        await Product.update(prods[0].id,{stock : (quantite - 1)})
+        await Product.update(prods[0].id,{stock : (prods[0].stock - Number(quantite))})
         sails.sockets.blast('newOp',{operation : 'Livraison',type : 'Client', actor, product : prods[0].code, quantite})
-        return res.ok({ok : 'ok'});
+        return res.ok({'stock' : prods[0].stock - Number(quantite)});
       })
     },
 
@@ -80,9 +80,9 @@ module.exports = {
       Reception.create({ quantite, product : prods[0].id, fournisseur : fours[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'receptions').members([liv.id]);
         await Fournisseur.addToCollection(fours[0].id, 'receptions').members([liv.id]);
-        await Product.update(prods[0].id,{stock : (quantite + 1)})
+        await Product.update(prods[0].id,{stock : (prods[0].stock + Number(quantite))})
         sails.sockets.blast('newOp',{operation : 'Réception',type: 'Fournisseur', actor, product : prods[0].code, quantite})
-        return res.ok({ok : 'ok'});
+        return res.ok({'stock' : prods[0].stock + Number(quantite)});
       })
     }
 
