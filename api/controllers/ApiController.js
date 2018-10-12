@@ -18,6 +18,10 @@ module.exports = {
       const { actor, product,quantite} = req.allParams()
       let prods = await Product.find({ code : product});
       let clients = await Client.find({ nom : actor });
+
+      if( prods.length === 0 ) return res.ok({ 'error' : ` Produit Introuvable ! (${product}) `})
+      if( clients.length === 0 ) return res.ok({ 'error' : ` Client Introuvable ! (${actor}) `})
+
       Livraison.create({ quantite, product : prods[0].id, client : clients[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'livraisons').members([liv.id]);
         await Client.addToCollection(clients[0].id, 'livraisons').members([liv.id]);
@@ -30,6 +34,10 @@ module.exports = {
       const { actor, product,quantite } = req.allParams()
       let prods = await Product.find({ code : product});
       let fours = await Fournisseur.find({ nom : actor });
+
+      if( prods.length === 0 ) return res.ok({ 'error' : ` Produit Introuvable ! (${product}) `})
+      if( fours.length === 0 ) return res.ok({ 'error' : ` Fournisseur Introuvable ! (${actor}) `})
+
       Reception.create({ quantite, product : prods[0].id, fournisseur : fours[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'receptions').members([liv.id]);
         await Fournisseur.addToCollection(fours[0].id, 'receptions').members([liv.id]);
