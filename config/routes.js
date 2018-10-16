@@ -29,6 +29,7 @@ module.exports.routes = {
   },
 
   'GET /connect' : { action : 'api/connect' },
+  'GET /product/api/:code' : { action : 'api/findByCode'},
 
   'POST /manuel/livraison' : { action : 'api/manuelLivraison' },
   'POST /manuel/reception' : { action : 'api/manuelReception' },

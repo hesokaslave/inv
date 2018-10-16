@@ -14,16 +14,19 @@ module.exports = {
         return res.json({products,fournisseurs,clients})
     },
 
+    findByCode : (req,res) => {
+        const { code } = req.allParams();
+        Product.find({code}).limit(1).then((product) => res.json({product})).catch(err => res.serverError(err))
+    },
+
     manuelLivraison : async (req,res) => {
       const { actor, product,quantite} = req.allParams()
       let prods = await Product.find({ code : product});
       let clients = await Client.find({ nom : actor });
-
       if( prods.length === 0 ) return res.ok({ 'error' : ` Produit Introuvable ! (${product}) `})
       if( clients.length === 0 ) return res.ok({ 'error' : ` Client Introuvable ! (${actor}) `})
 
       if(prods[0].stock < Number(quantite)) return res.ok({ 'error' : `Stock Insuffisant ! ( Stock : ${prods[0].stock} || Qté : ${quantite})`})
-
       Livraison.create({ quantite, product : prods[0].id, client : clients[0].id }).fetch().then( async (liv) => {
         await Product.addToCollection(prods[0].id, 'livraisons').members([liv.id]);
         await Client.addToCollection(clients[0].id, 'livraisons').members([liv.id]);
