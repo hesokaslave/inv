@@ -19,6 +19,11 @@ module.exports = {
         Product.find({code}).limit(1).then((product) => res.json({product})).catch(err => res.serverError(err))
     },
 
+    findByBarcode : (req,res) => {
+        const { codeABarres } = req.allParams();
+        Product.find({codeABarres}).limit(1).then((product) => res.json({product})).catch(err => res.serverError(err))
+    },
+
     manuelLivraison : async (req,res) => {
       const { actor, product,quantite} = req.allParams()
       let prods = await Product.find({ code : product});
