@@ -28,6 +28,8 @@ module.exports.routes = {
     view: 'index'
   },
 
+  'GET /resetDB' : { action : 'api/resetDB' },
+
   'GET /connect' : { action : 'api/connect' },
   'GET /product/api/:code' : { action : 'api/findByCode'},
   'GET /product/bar/api/:codeABarres' : { action : 'api/findByBarcode'},

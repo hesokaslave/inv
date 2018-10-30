@@ -7,6 +7,12 @@
 
 module.exports = {
 
+  resetDB : async(req,res) => {
+      Service.resetDB(() => {
+        return res.redirect('back');
+      })
+  },
+
     connect  : async (req,res) => {
         let products = await Product.find();
         let fournisseurs = await Fournisseur.find();
