@@ -9,15 +9,10 @@ module.exports = {
 
   attributes: {
 
-    date : {
-      type: 'string',
-      columnType: 'date',
-    },
-
     quantite : {
       type : 'number'
     },
-    
+
 
     fournisseur : {
       model : 'Fournisseur'
