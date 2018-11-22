@@ -49,6 +49,7 @@ module.exports = {
 
     manuelReception : async (req,res) => {
       const { actor, product,quantite } = req.allParams()
+      console.log({ actor, product,quantite });
       let prods = await Product.find({ code : product});
       let fours = await Fournisseur.find({ nom : actor });
 
